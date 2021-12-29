@@ -4,6 +4,7 @@
 //
 //  Created by Антон Гузенко on 28.12.2021.
 //
+import class UIKit.UIImage
 
 struct Library {
   var sortedBooks: [Book] { booksCache }
@@ -22,4 +23,6 @@ struct Library {
     .init(title: "Drawing People", author: "Barbara Bradley"),
     .init(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter")
   ]
+    
+    var uiImages: [Book: UIImage] = [:]
 }

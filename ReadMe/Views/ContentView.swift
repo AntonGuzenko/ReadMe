@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var library = Library()
+    
     var body: some View {
         NavigationView {
-            List(Library().sortedBooks, id: \.title) { book in
-                BookRow(book: book)
+            List(library.sortedBooks, id: \.self) { book in
+                BookRow(
+                    book: book,
+                    image: $library.uiImages[book]
+                )
             }
             .navigationBarTitle("My Library")
         }
@@ -20,13 +25,19 @@ struct ContentView: View {
 
 struct BookRow: View {
     let book: Book
+    @Binding var image : UIImage?
     
     var body: some View {
     NavigationLink(
-        destination: DetailView(book: book)
+        destination: DetailView(book: book, image: $image)
     ) {
         HStack {
-            Book.Image(title: book.title, size: 80)
+            Book.Image(
+                uiImage: image,
+                title: book.title,
+                size: 80,
+                cornerRadius: 12
+            )
             
             TitleAndAuthorStack(
                 book: book,
@@ -34,8 +45,8 @@ struct BookRow: View {
                 authorFont: .title3
                 )
                 .lineLimit(1)
-        
         }
+        .padding(.vertical, 8)
     }
 }
 }
@@ -43,6 +54,7 @@ struct BookRow: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewedInAllColorScemes
     }
 }
 

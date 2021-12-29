@@ -15,6 +15,7 @@
 		71123C90277BA0C500F4054E /* BookViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71123C8F277BA0C500F4054E /* BookViews.swift */; };
 		71123C92277BABAE00F4054E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71123C91277BABAE00F4054E /* Library.swift */; };
 		71123C94277BAD6300F4054E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71123C93277BAD6300F4054E /* DetailView.swift */; };
+		71123C96277C653000F4054E /* PHPickerViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71123C95277C653000F4054E /* PHPickerViewController.View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		71123C8F277BA0C500F4054E /* BookViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViews.swift; sourceTree = "<group>"; };
 		71123C91277BABAE00F4054E /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		71123C93277BAD6300F4054E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		71123C95277C653000F4054E /* PHPickerViewController.View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PHPickerViewController.View.swift; path = ../../../../../../Downloads/PHPickerViewController.View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				71123C7E277B9EE600F4054E /* ReadMeApp.swift */,
+				71123C8C277B9FDF00F4054E /* Book.swift */,
 				71123C91277BABAE00F4054E /* Library.swift */,
 				71123C8E277BA09D00F4054E /* Views */,
-				71123C8C277B9FDF00F4054E /* Book.swift */,
 				71123C82277B9EE600F4054E /* Assets.xcassets */,
 				71123C84277B9EE600F4054E /* Preview Content */,
 			);
@@ -83,6 +85,7 @@
 				71123C80277B9EE600F4054E /* ContentView.swift */,
 				71123C8F277BA0C500F4054E /* BookViews.swift */,
 				71123C93277BAD6300F4054E /* DetailView.swift */,
+				71123C95277C653000F4054E /* PHPickerViewController.View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				71123C7F277B9EE600F4054E /* ReadMeApp.swift in Sources */,
 				71123C92277BABAE00F4054E /* Library.swift in Sources */,
 				71123C8D277B9FDF00F4054E /* Book.swift in Sources */,
+				71123C96277C653000F4054E /* PHPickerViewController.View.swift in Sources */,
 				71123C90277BA0C500F4054E /* BookViews.swift in Sources */,
 				71123C94277BAD6300F4054E /* DetailView.swift in Sources */,
 			);
