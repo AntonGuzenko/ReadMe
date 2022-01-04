@@ -6,9 +6,20 @@
 //
 import Combine
 import class UIKit.UIImage
+import Foundation
 
-class Library: ObservableObject {
+enum Section: CaseIterable {
+    case readMe
+    case finished
+}
+
+final class Library: ObservableObject {
   var sortedBooks: [Book] { booksCache }
+    
+    var manuallySortedBooks: [Section:[Book]] {
+        Dictionary(grouping: booksCache, by: \.readMe)
+            .mapKeys(Section.init)
+    }
     
     /// Add a new book at the start of the library's manualy-sorted books
 
@@ -17,6 +28,8 @@ class Library: ObservableObject {
         uiImages[book] = image
         
     }
+    
+    @Published var uiImages: [Book: UIImage] = [:]
 
   /// An in-memory cache of the manually-sorted books.
   @Published private var booksCache: [Book] = [
@@ -40,6 +53,22 @@ class Library: ObservableObject {
     .init(title: "Drawing People", author: "Barbara Bradley"),
     .init(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter")
   ]
-    
-  @Published var uiImages: [Book: UIImage] = [:]
+
+}
+//MARK: - private
+
+private extension Section {
+    init(readMe: Bool) {
+        self = readMe ? .readMe : .finished
+    }
+}
+
+private extension Dictionary {
+    func mapKeys<Transformed>(
+        _ transform: (Key) throws -> Transformed
+    ) rethrows -> [Transformed: Value] {
+        .init(
+            uniqueKeysWithValues: try map { (try transform($0.key), $0.value) }
+        )
+    }
 }
