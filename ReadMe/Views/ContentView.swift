@@ -35,13 +35,47 @@ struct ContentView: View {
                 )
             
                 
-                ForEach(Section.allCases, id: \.self) {
-                    SectionView(section: $0)
+                switch library.sortStyle {
+                case .title, .author:
+                    Bookrows(data: library.sortedBooks, section: nil)
+                    
+                case .manual:
+                    ForEach(Section.allCases, id: \.self) {
+                        SectionView(section: $0)
                 }
+              }
             }
-            .toolbar(content:EditButton.init)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Menu("Sort") {
+                        Picker("Sort Style", selection: $library.sortStyle) {
+                            ForEach(SortStyle.allCases, id: \.self) { sortStyle in
+                                Text("\(sortStyle)".capitalized)
+                            }
+                        }
+                    }
+                }
+                
+                ToolbarItem(content: EditButton.init)
+            }
             .navigationBarTitle("My Library")
         }
+    }
+}
+
+private struct Bookrows : DynamicViewContent {
+    let data: [Book]
+    let section: Section?
+    @EnvironmentObject var library: Library
+    
+    var body: some View {
+        ForEach(data) {
+            BookRow(book: $0)
+        }
+        .onDelete { IndexSet in
+            library.deleteBooks(atOffsets: IndexSet, section: section)
+        }
+        
     }
 }
 
@@ -113,16 +147,14 @@ private struct SectionView: View {
                     }
                     .listRowInsets(.init())
             ) {
-                ForEach(books) {
-                    BookRow(book: $0)
-                }
-                .onDelete { IndexSet in
-                    library.deleteBooks(atOffsets: IndexSet, section: section)
-                }
-                .onMove { indices, newOffset in
-                    library.moveBooks(
-                        oldOffsets: indices, newOffset: newOffset, section: section)
-                }
+                Bookrows(data: books, section: section)
+                    .onMove { indices, newOffset in
+                        library.moveBooks(
+                            oldOffsets: indices, newOffset: newOffset,
+                            section: section
+                        )
+                    }
+                  
             }
             
         }
